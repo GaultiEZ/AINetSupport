@@ -130,10 +130,10 @@ namespace GLAIStudio.AINetSupportCSS
                 }
                 catch (JsonException)
                 {
-                    return "E2";
+                    return "E1ZA";
                 }
             }
-            return "E1";
+            return "";
         }
     }
 
