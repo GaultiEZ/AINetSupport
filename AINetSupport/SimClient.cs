@@ -7,12 +7,8 @@ using System.Security;
 
 namespace GLAIStudio.AINetSupportCSS
 { 
-    public class SimClient
-    {
-        // 保留 SimClient 类（如果需要）
-    }
 
-    public class OpenAIClient
+    public class SimClient
     {
         public string model;
         public string endpoint;
@@ -23,7 +19,7 @@ namespace GLAIStudio.AINetSupportCSS
         HttpClient httpClient;
         OpenAIMessage openAIMessage;
 
-        public OpenAIClient(HttpClient https, string api, string modelName, string endpoint,double temp=0.7,int maxtoken = 20,int contextlen = 1024)
+        public SimClient(HttpClient https, string api, string modelName, string endpoint,double temp=0.7,int maxtoken = 20,int contextlen = 1024)
         {
             this.model = modelName;
             this.API = api;
