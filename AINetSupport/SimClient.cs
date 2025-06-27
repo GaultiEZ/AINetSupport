@@ -111,6 +111,66 @@ namespace GLAIStudio.AINetSupportCSS
 
         }
 
+        public async Task CallApiPostAsync(string userInput)
+        {
+            var userMessage = new Message { Role = "user", Content = userInput };
+            openAIMessage.Messages.Add(userMessage);
+            var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
+            request.Headers.Add("Authorization", $"Bearer {API}");
+            request.Content = new StringContent(JsonSerializer.Serialize(openAIMessage), Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, default);
+                response.EnsureSuccessStatusCode();
+                using (var stream = await response.Content.ReadAsStreamAsync());
+            }
+            catch (HttpRequestException ex)
+            {
+
+                Console.Error.WriteLine($"HTTP 请求失败: {ex.Message}");
+                throw;
+            }
+            catch (TaskCanceledException ex)
+            {
+                Console.Error.WriteLine($"请求被取消或超时: {ex.Message}");
+                throw;
+            }
+            catch (JsonException ex)
+            {
+                Console.Error.WriteLine($"JSON 解析失败: {ex.Message}");
+                throw;
+            }
+            catch (IOException ex)
+            {
+                Console.Error.WriteLine($"IO 操作失败: {ex.Message}");
+                throw;
+            }
+            catch (ArgumentException ex)
+            {
+                Console.Error.WriteLine($"参数无效: {ex.Message}");
+                throw;
+            }
+            catch (AggregateException ex)
+            {
+                Console.Error.WriteLine($"多个异常发生: {ex.Message}");
+                foreach (var innerEx in ex.InnerExceptions)
+                {
+                    Console.Error.WriteLine($"内层异常: {innerEx.Message}");
+                }
+                throw;
+            }
+            catch (SecurityException ex)
+            {
+                Console.Error.WriteLine($"安全异常: {ex.Message}");
+                throw;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.Error.WriteLine($"未经授权访问: {ex.Message}");
+                throw;
+            }
+        }
+
         public static string AnswerProcessContent(string line)
         {
             if (line.StartsWith("data: ") && !line.Contains("[DONE]"))
