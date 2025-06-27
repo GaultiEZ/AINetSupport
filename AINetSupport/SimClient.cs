@@ -174,6 +174,10 @@ namespace GLAIStudio.AINetSupportCSS
 
         public static string AnswerProcessContent(string line)
         {
+            if (line == null)
+            {
+                return "";
+            }
             if (line.StartsWith("data: ") && !line.Contains("[DONE]"))
             {
                 var jsonData = line.Substring(6);
