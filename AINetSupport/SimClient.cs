@@ -19,7 +19,7 @@ namespace GLAIStudio.AINetSupportCSS
         HttpClient httpClient;
         OpenAIMessage openAIMessage;
 
-        public SimClient(HttpClient https, string api, string modelName, string endpoint,double temp=0.7,int maxtoken = 20,int contextlen = 1024)
+        public SimClient(HttpClient https, string api, string modelName, string endpoint,double temp=0.7,int maxtoken = 2000,int contextlen = 1024)
         {
             this.model = modelName;
             this.API = api;
