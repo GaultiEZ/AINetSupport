@@ -111,7 +111,7 @@ namespace GLAIStudio.AINetSupportCSS
 
         }
 
-        public async Task CallApiPostAsync(string userInput)
+        public async Task<Stream> CallApiPostAsync(string userInput)
         {
             var userMessage = new Message { Role = "user", Content = userInput };
             openAIMessage.Messages.Add(userMessage);
@@ -122,7 +122,8 @@ namespace GLAIStudio.AINetSupportCSS
             {
                 var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, default);
                 response.EnsureSuccessStatusCode();
-                using (var stream = await response.Content.ReadAsStreamAsync());
+                var stream = await response.Content.ReadAsStreamAsync();
+                return stream;
             }
             catch (HttpRequestException ex)
             {
