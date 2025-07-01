@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A simple tool that supports OpenAI SDK format, consistently returns streams, need" +
     "s some more processing.\r\n")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0+fb12b43fe8580b99669ced8f368584860511dd3a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0+911a3a4a3f88e6242cb586c0bfbc15a6789b0b9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AINetSupport")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AINetSupport")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]

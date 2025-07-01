@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Security;
 using System.Reflection.Metadata.Ecma335;
-
+///该包主打操作简单 性能好 自定义性强 提供一些简单的包装操作
 namespace GLAIStudio.AINetSupportCSS
 {
     
@@ -37,219 +37,51 @@ namespace GLAIStudio.AINetSupportCSS
                         return context;
                     }
                 }
-                catch (JsonException)
+                catch (JsonException je)
                 {
-                    return "E1ZA";
+                    throw je;
                 }
             }
             return "";
         }
 
-        public void AddAssistMessage(string messageContent)
+        public static void AddAssistMessage(string messageContent,OpenAIMessage oai)
         {
-            OpenAIMessage.Messages.Add(new Message { Role = "assistant", Content = messageContent });
+            oai.Messages.Add(new Message { Role = "assistant", Content = messageContent });
         }
     }
 
-    public class SimClientSingleModel:IClient
+    public class SimClient:IClient
     {
         public string Model { get; set; }
         public string Endpoint { get; set; }
-        public string ApiKey { get; set; }
+        private string ApiKey { get; set; }
         public double Temperature { get; set; }
         public int MaxTokens { get; set; }
         public int ContextLength { get; set; }
 
         public HttpClient HttpClient { get; set; }
-
         public OpenAIMessage OpenAIMessage { get; set; }
 
-        public SimClientSingleModel(HttpClient https, string api, string modelName, string endpoint, double temp = 0.7, int maxtoken = 2000, int contextlen = 1024, OpenAIMessage opi = null)
-        {
-            this.Model = modelName;
-            this.ApiKey = api;
-            this.Endpoint = endpoint;
-            this.Temperature = temp;
-            this.MaxTokens = maxtoken;
-            this.ContextLength = contextlen;
-            HttpClient = https;
-            HttpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
-            HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            // 初始化 OpenAIMessage
-            if (opi == null)
-            {
-                OpenAIMessage = new OpenAIMessage
-                {
-                    Model = this.Model,
-                    Stream = true,
-                    Temperature = this.Temperature, // 默认值
-                    MaxTokens = this.MaxTokens,   // 默认值
-                    ContextLength = this.ContextLength // 默认值
-                };
-            }
-
-        }
-
-        public async Task<Stream> CallApiPost(string userInput)
-        {
-            // 构建请求内容
-            var userMessage = new Message { Role = "user", Content = userInput };
-            OpenAIMessage.Messages.Add(userMessage);
-
-            var content = new StringContent(
-                JsonSerializer.Serialize(OpenAIMessage),
-                Encoding.UTF8,
-                "application/json");
-
-            // 发送请求
-            try
-            {
-                var response = await HttpClient.PostAsync(Endpoint, content);
-                response.EnsureSuccessStatusCode();
-
-                // 返回响应流
-                return await response.Content.ReadAsStreamAsync();
-            }
-            catch (HttpRequestException ex)
-            {
-
-                Console.Error.WriteLine($"HTTP 请求失败: {ex.Message}");
-                throw;
-            }
-            catch (TaskCanceledException ex)
-            {
-                Console.Error.WriteLine($"请求被取消或超时: {ex.Message}");
-                throw;
-            }
-            catch (JsonException ex)
-            {
-                Console.Error.WriteLine($"JSON 解析失败: {ex.Message}");
-                throw;
-            }
-            catch (IOException ex)
-            {
-                Console.Error.WriteLine($"IO 操作失败: {ex.Message}");
-                throw;
-            }
-            catch (ArgumentException ex)
-            {
-                Console.Error.WriteLine($"参数无效: {ex.Message}");
-                throw;
-            }
-            catch (AggregateException ex)
-            {
-                Console.Error.WriteLine($"多个异常发生: {ex.Message}");
-                foreach (var innerEx in ex.InnerExceptions)
-                {
-                    Console.Error.WriteLine($"内层异常: {innerEx.Message}");
-                }
-                throw;
-            }
-            catch (SecurityException ex)
-            {
-                Console.Error.WriteLine($"安全异常: {ex.Message}");
-                throw;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Console.Error.WriteLine($"未经授权访问: {ex.Message}");
-                throw;
-            }
-
-             
-        }
-
-        public async Task<Stream> CallApiPostAsync(string userInput)
-        {
-            var userMessage = new Message { Role = "user", Content = userInput };
-            OpenAIMessage.Messages.Add(userMessage);
-            var content = new StringContent(
-                JsonSerializer.Serialize(OpenAIMessage),
-                Encoding.UTF8,
-                "application/json");
-            var request = new HttpRequestMessage(HttpMethod.Post, Endpoint) { Content = content};
-            try
-            {
-                var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, default);
-                response.EnsureSuccessStatusCode();
-                var stream = await response.Content.ReadAsStreamAsync();
-                return stream;
-            }
-            catch (HttpRequestException ex)
-            {
-
-                Console.Error.WriteLine($"HTTP 请求失败: {ex.Message}");
-                throw;
-            }
-            catch (TaskCanceledException ex)
-            {
-                Console.Error.WriteLine($"请求被取消或超时: {ex.Message}");
-                throw;
-            }
-            catch (JsonException ex)
-            {
-                Console.Error.WriteLine($"JSON 解析失败: {ex.Message}");
-                throw;
-            }
-            catch (IOException ex)
-            {
-                Console.Error.WriteLine($"IO 操作失败: {ex.Message}");
-                throw;
-            }
-            catch (ArgumentException ex)
-            {
-                Console.Error.WriteLine($"参数无效: {ex.Message}");
-                throw;
-            }
-            catch (AggregateException ex)
-            {
-                Console.Error.WriteLine($"多个异常发生: {ex.Message}");
-                foreach (var innerEx in ex.InnerExceptions)
-                {
-                    Console.Error.WriteLine($"内层异常: {innerEx.Message}");
-                }
-                throw;
-            }
-            catch (SecurityException ex)
-            {
-                Console.Error.WriteLine($"安全异常: {ex.Message}");
-                throw;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Console.Error.WriteLine($"未经授权访问: {ex.Message}");
-                throw;
-            }
-        }
-
-
-    }
-
-    public class SimClientMultiModel:IClient
-    {
-        
-
-        public HttpClient HttpClient { get; set; }
-        public OpenAIMessage OpenAIMessage { get; set; }
-
-        public SimClientMultiModel(HttpClient https,OpenAIMessage opi = null)
+        public SimClient(HttpClient https,string model,string endpoint,string api,string temp,string maxtoken,string contentlen,OpenAIMessage oai)
         {
             HttpClient = https;
-            if (opi == null)
+            if (oai == null)
             {
                 OpenAIMessage = new OpenAIMessage();
-            }
-            
+            }           
         }
-        public async Task<Stream> CallApiPost(string api, string modelName, string endpoint, string userInput, double temp = 0.7, int maxtoken = 2000, int contextlen = 1024)
+        private void UpdateOpenAIMessage()
         {
-            OpenAIMessage.Model = modelName;
-            OpenAIMessage.Temperature = temp;
-            OpenAIMessage.ContextLength = contextlen;
-            OpenAIMessage.MaxTokens = maxtoken;
+            OpenAIMessage.Model = Model;
             OpenAIMessage.Stream = true;
-
+            OpenAIMessage.Temperature = this.Temperature;
+            OpenAIMessage.MaxTokens = this.MaxTokens;
+            OpenAIMessage.ContextLength = this.ContextLength;
+        }
+        public async Task<Stream> CallApiPost(string api, string modelName, string endpoint, string userInput)
+        {
+            UpdateOpenAIMessage();
             var userMessage = new Message { Role = "user", Content = userInput };
             OpenAIMessage.Messages.Add(userMessage);
 
@@ -269,57 +101,52 @@ namespace GLAIStudio.AINetSupportCSS
             }
             catch (HttpRequestException ex)
             {
-
-                Console.Error.WriteLine($"HTTP 请求失败: {ex.Message}");
+                Console.Error.WriteLine($"HTTP request failed: {ex.Message}");
                 throw;
             }
             catch (TaskCanceledException ex)
             {
-                Console.Error.WriteLine($"请求被取消或超时: {ex.Message}");
+                Console.Error.WriteLine($"Request was canceled or timed out: {ex.Message}");
                 throw;
             }
             catch (JsonException ex)
             {
-                Console.Error.WriteLine($"JSON 解析失败: {ex.Message}");
+                Console.Error.WriteLine($"JSON parsing failed: {ex.Message}");
                 throw;
             }
             catch (IOException ex)
             {
-                Console.Error.WriteLine($"IO 操作失败: {ex.Message}");
+                Console.Error.WriteLine($"IO operation failed: {ex.Message}");
                 throw;
             }
             catch (ArgumentException ex)
             {
-                Console.Error.WriteLine($"参数无效: {ex.Message}");
+                Console.Error.WriteLine($"Invalid argument: {ex.Message}");
                 throw;
             }
             catch (AggregateException ex)
             {
-                Console.Error.WriteLine($"多个异常发生: {ex.Message}");
+                Console.Error.WriteLine($"Multiple exceptions occurred: {ex.Message}");
                 foreach (var innerEx in ex.InnerExceptions)
                 {
-                    Console.Error.WriteLine($"内层异常: {innerEx.Message}");
+                    Console.Error.WriteLine($"Inner exception: {innerEx.Message}");
                 }
                 throw;
             }
             catch (SecurityException ex)
             {
-                Console.Error.WriteLine($"安全异常: {ex.Message}");
+                Console.Error.WriteLine($"Security exception: {ex.Message}");
                 throw;
             }
             catch (UnauthorizedAccessException ex)
             {
-                Console.Error.WriteLine($"未经授权访问: {ex.Message}");
+                Console.Error.WriteLine($"Unauthorized access: {ex.Message}");
                 throw;
             }
         }
-        public async Task<Stream> CallApiPostAsync(string api, string modelName, string endpoint, string userInput, double temp = 0.7, int maxtoken = 2000, int contextlen = 1024)
+        public async Task<Stream> CallApiPostAsync(string api, string modelName, string endpoint,string userInput)
         {
-            OpenAIMessage.Model = modelName;
-            OpenAIMessage.Temperature = temp;
-            OpenAIMessage.ContextLength = contextlen;
-            OpenAIMessage.MaxTokens = maxtoken;
-            OpenAIMessage.Stream = true;
+            UpdateOpenAIMessage();
 
             var userMessage = new Message { Role = "user", Content = userInput };
             OpenAIMessage.Messages.Add(userMessage);
@@ -335,47 +162,46 @@ namespace GLAIStudio.AINetSupportCSS
             }
             catch (HttpRequestException ex)
             {
-
-                Console.Error.WriteLine($"HTTP 请求失败: {ex.Message}");
+                Console.Error.WriteLine($"HTTP request failed: {ex.Message}");
                 throw;
             }
             catch (TaskCanceledException ex)
             {
-                Console.Error.WriteLine($"请求被取消或超时: {ex.Message}");
+                Console.Error.WriteLine($"Request was canceled or timed out: {ex.Message}");
                 throw;
             }
             catch (JsonException ex)
             {
-                Console.Error.WriteLine($"JSON 解析失败: {ex.Message}");
+                Console.Error.WriteLine($"JSON parsing failed: {ex.Message}");
                 throw;
             }
             catch (IOException ex)
             {
-                Console.Error.WriteLine($"IO 操作失败: {ex.Message}");
+                Console.Error.WriteLine($"IO operation failed: {ex.Message}");
                 throw;
             }
             catch (ArgumentException ex)
             {
-                Console.Error.WriteLine($"参数无效: {ex.Message}");
+                Console.Error.WriteLine($"Invalid argument: {ex.Message}");
                 throw;
             }
             catch (AggregateException ex)
             {
-                Console.Error.WriteLine($"多个异常发生: {ex.Message}");
+                Console.Error.WriteLine($"Multiple exceptions occurred: {ex.Message}");
                 foreach (var innerEx in ex.InnerExceptions)
                 {
-                    Console.Error.WriteLine($"内层异常: {innerEx.Message}");
+                    Console.Error.WriteLine($"Inner exception: {innerEx.Message}");
                 }
                 throw;
             }
             catch (SecurityException ex)
             {
-                Console.Error.WriteLine($"安全异常: {ex.Message}");
+                Console.Error.WriteLine($"Security exception: {ex.Message}");
                 throw;
             }
             catch (UnauthorizedAccessException ex)
             {
-                Console.Error.WriteLine($"未经授权访问: {ex.Message}");
+                Console.Error.WriteLine($"Unauthorized access: {ex.Message}");
                 throw;
             }
         }      
