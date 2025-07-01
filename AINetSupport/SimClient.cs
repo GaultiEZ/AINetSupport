@@ -75,7 +75,11 @@ namespace GLAIStudio.AINetSupportCSS
             if (oai == null)
             {
                 OpenAIMessage = new OpenAIMessage();
-            }           
+            }
+            else
+            {
+                OpenAIMessage = oai;
+            }
         }
         private void UpdateOpenAIMessage()
         {
