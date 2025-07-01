@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>GLAIStudio.AINetSupportCS</PackageId>
     <Title>GLAIStudio.AINetSupportCS</Title>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Gaulti</Authors>
     <Company>GLAIStudio</Company>
     <Description>A simple tool that supports OpenAI SDK format, consistently returns streams, needs some more processing.
