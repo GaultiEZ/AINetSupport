@@ -157,14 +157,18 @@ namespace GLAIStudio.AINetSupportCSS
                 throw;
             }
 
-
+             
         }
 
         public async Task<Stream> CallApiPostAsync(string userInput)
         {
             var userMessage = new Message { Role = "user", Content = userInput };
             OpenAIMessage.Messages.Add(userMessage);
-            var request = new HttpRequestMessage(HttpMethod.Post, Endpoint);
+            var content = new StringContent(
+                JsonSerializer.Serialize(OpenAIMessage),
+                Encoding.UTF8,
+                "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post, Endpoint) { Content = content};
             try
             {
                 var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, default);

@@ -1,0 +1,12 @@
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\bin\Debug\net8.0\AINetSupport.deps.json
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\bin\Debug\net8.0\AINetSupport.dll
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\bin\Debug\net8.0\AINetSupport.pdb
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.GeneratedMSBuildEditorConfig.editorconfig
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.AssemblyInfoInputs.cache
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.AssemblyInfo.cs
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.csproj.CoreCompileInputs.cache
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.sourcelink.json
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.dll
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\refint\AINetSupport.dll
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\AINetSupport.pdb
+G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\obj\Debug\net8.0\ref\AINetSupport.dll

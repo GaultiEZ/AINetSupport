@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>GLAIStudio.AINetSupportCS</id>
+    <version>1.1.0</version>
+    <title>GLAIStudio.AINetSupportCS</title>
+    <authors>Gaulti</authors>
+    <icon>AINetSupport.png</icon>
+    <description>A simple tool that supports OpenAI SDK format, consistently returns streams, needs some more processing.</description>
+    <repository type="git" commit="fb12b43fe8580b99669ced8f368584860511dd3a" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="G:\MygitLIB\GLAIStudio.AINetSuoport\AINetSupport\AINetSupport\bin\Debug\net8.0\AINetSupport.dll" target="lib\net8.0\AINetSupport.dll" />
+    <file src="C:\Users\Administrator\Pictures\AINetSupport.png" target="\AINetSupport.png" />
+  </files>
+</package>
