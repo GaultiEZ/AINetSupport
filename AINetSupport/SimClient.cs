@@ -55,7 +55,7 @@ namespace GLAIStudio.AINetSupportCSS
     {
         public string Model { get; set; }
         public string Endpoint { get; set; }
-        private string ApiKey { get; set; }
+        public string ApiKey { get; set; }
         public double Temperature { get; set; }
         public int MaxTokens { get; set; }
         public int ContextLength { get; set; }
