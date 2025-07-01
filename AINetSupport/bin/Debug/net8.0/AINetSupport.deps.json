@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "AINetSupport/1.2.1": {
+      "AINetSupport/1.2.4": {
         "runtime": {
           "AINetSupport.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "AINetSupport/1.2.1": {
+    "AINetSupport/1.2.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

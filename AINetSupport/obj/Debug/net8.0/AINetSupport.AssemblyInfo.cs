@@ -15,11 +15,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("A simple tool that supports OpenAI SDK format, consistently returns streams, need" +
     "s some more processing.\r\n")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.2.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.1+bdaadfb6a641e55b42634192188efef333dba567")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.2.4.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2.4+502000641c4add71b96053391af3e373e5b2ec07")]
 [assembly: System.Reflection.AssemblyProductAttribute("AINetSupport")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AINetSupport")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.2.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.2.4.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

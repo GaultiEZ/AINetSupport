@@ -83,13 +83,14 @@ namespace GLAIStudio.AINetSupportCSS
         }
         private void UpdateOpenAIMessage()
         {
+            
             OpenAIMessage.Model = Model;
             OpenAIMessage.Stream = true;
             OpenAIMessage.Temperature = this.Temperature;
             OpenAIMessage.MaxTokens = this.MaxTokens;
             OpenAIMessage.ContextLength = this.ContextLength;
         }
-        public async Task<Stream> CallApiPost(string api, string modelName, string endpoint, string userInput)
+        public async Task<Stream> CallApiPost(string userInput)
         {
             UpdateOpenAIMessage();
             var userMessage = new Message { Role = "user", Content = userInput };
@@ -99,11 +100,12 @@ namespace GLAIStudio.AINetSupportCSS
                 JsonSerializer.Serialize(OpenAIMessage),
                 Encoding.UTF8,
                 "application/json");
+            content.Headers.Add("Authorization", $"Bearer {ApiKey}");
 
             // 发送请求
             try
             {
-                var response = await HttpClient.PostAsync(endpoint, content);
+                var response = await HttpClient.PostAsync(Endpoint, content);
                 response.EnsureSuccessStatusCode();
 
                 // 返回响应流
@@ -154,14 +156,15 @@ namespace GLAIStudio.AINetSupportCSS
                 throw;
             }
         }
-        public async Task<Stream> CallApiPostAsync(string api, string modelName, string endpoint,string userInput)
+        public async Task<Stream> CallApiPostAsync(string userInput)
         {
+
             UpdateOpenAIMessage();
 
             var userMessage = new Message { Role = "user", Content = userInput };
             OpenAIMessage.Messages.Add(userMessage);
-            var request = new HttpRequestMessage(HttpMethod.Post, endpoint);
-            request.Headers.Add("Authorization", $"Bearer {api}");
+            var request = new HttpRequestMessage(HttpMethod.Post, Endpoint);
+            request.Headers.Add("Authorization", $"Bearer {ApiKey}");
             request.Content = new StringContent(JsonSerializer.Serialize(OpenAIMessage), Encoding.UTF8, "application/json");
             try
             {
