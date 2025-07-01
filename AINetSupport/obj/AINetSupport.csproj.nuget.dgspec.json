@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\MygitLIB\\AINetSupport\\AINetSupport\\AINetSupport.csproj": {}
+    "G:\\MygitLIB\\GLAIStudio.AINetSupport\\AINetSupport\\AINetSupport.csproj": {}
   },
   "projects": {
-    "G:\\MygitLIB\\AINetSupport\\AINetSupport\\AINetSupport.csproj": {
-      "version": "1.1.0",
+    "G:\\MygitLIB\\GLAIStudio.AINetSupport\\AINetSupport\\AINetSupport.csproj": {
+      "version": "1.2.0",
       "restore": {
-        "projectUniqueName": "G:\\MygitLIB\\AINetSupport\\AINetSupport\\AINetSupport.csproj",
+        "projectUniqueName": "G:\\MygitLIB\\GLAIStudio.AINetSupport\\AINetSupport\\AINetSupport.csproj",
         "projectName": "GLAIStudio.AINetSupportCS",
-        "projectPath": "G:\\MygitLIB\\AINetSupport\\AINetSupport\\AINetSupport.csproj",
+        "projectPath": "G:\\MygitLIB\\GLAIStudio.AINetSupport\\AINetSupport\\AINetSupport.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "G:\\MygitLIB\\AINetSupport\\AINetSupport\\obj\\",
+        "outputPath": "G:\\MygitLIB\\GLAIStudio.AINetSupport\\AINetSupport\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

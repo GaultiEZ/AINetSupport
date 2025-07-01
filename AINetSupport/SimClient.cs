@@ -63,8 +63,14 @@ namespace GLAIStudio.AINetSupportCSS
         public HttpClient HttpClient { get; set; }
         public OpenAIMessage OpenAIMessage { get; set; }
 
-        public SimClient(HttpClient https,string model,string endpoint,string api,string temp,string maxtoken,string contentlen,OpenAIMessage oai)
+        public SimClient(HttpClient https,string model,string endpoint,string api,double temp=0.7,int maxtoken=2000,int contentlen = 8000,OpenAIMessage oai = null)
         {
+            Model = model;
+            ApiKey = api;
+            Endpoint = endpoint;
+            Temperature = temp;
+            MaxTokens = maxtoken;
+            ContextLength = contentlen;
             HttpClient = https;
             if (oai == null)
             {
