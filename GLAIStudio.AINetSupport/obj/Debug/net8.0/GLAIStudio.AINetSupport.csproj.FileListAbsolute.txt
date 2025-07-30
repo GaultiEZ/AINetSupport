@@ -1,0 +1,11 @@
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\bin\Debug\net8.0\GLAIStudio.AINetSupport.deps.json
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\bin\Debug\net8.0\GLAIStudio.AINetSupport.dll
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\bin\Debug\net8.0\GLAIStudio.AINetSupport.pdb
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.GeneratedMSBuildEditorConfig.editorconfig
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.AssemblyInfoInputs.cache
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.AssemblyInfo.cs
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.csproj.CoreCompileInputs.cache
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.dll
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\refint\GLAIStudio.AINetSupport.dll
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\GLAIStudio.AINetSupport.pdb
+G:\Myprogess\GLAIStudio.AINetSupport\GLAIStudio.AINetSupport\obj\Debug\net8.0\ref\GLAIStudio.AINetSupport.dll
